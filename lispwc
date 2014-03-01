@@ -1,0 +1,2 @@
+#!/bin/sh
+exec cl-launch -s lisp-stripper --entry lisp-stripper:count-lisp-locs -- "${1+$@}"
