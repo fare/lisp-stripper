@@ -91,12 +91,15 @@
       (flush-blanks!)
       (out c)))))
 
-(defun count-lisp-loc (file)
-  (count-lines (strip-lisp (read-file-string file))))
+(defun count-lisp-loc (input)
+  (with-input (input)
+    (count-lines (strip-lisp input))))
 
-(defun count-lisp-locs (files)
-  (dolist (f (ensure-list files))
-    (format t "~10d  ~a~%" (count-lisp-loc f) f)))
+(defun print-count (count &optional filename)
+  (format t "~10D~@[  ~A~]~%" count filename))
+
+(defun print-loc-count (file)
+  (print-count (count-lisp-loc (ensure-pathname file :namestring :native)) file))
 
 (defun strip-file (file &optional (out *standard-output*))
   (princ (strip-lisp (read-file-string file)) out))
