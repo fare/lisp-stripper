@@ -5,5 +5,5 @@ exec cl-launch -sp lisp-stripper -E main -f "$0" -- ${1+"$@"} ; exit
 |#
 (defun main (argv)
   (if argv
-      (map () 'print-file-loc-count argv)
+      (map () 'print-loc-count argv)
       (print-loc-count *standard-input*)))
