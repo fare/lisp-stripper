@@ -104,3 +104,7 @@
 (defun strip-file (file &optional (out *standard-output*))
   (princ (strip-lisp (read-file-string file)) out))
 
+(defun main (argv)
+  (if argv
+      (map () 'print-loc-count argv)
+      (print-loc-count *standard-input*)))
